@@ -1,7 +1,5 @@
 
-
-const moment = require ('moment')
-const jwt = require ('jwt')
+const services = require ('../services')
 const config = require ( '../config')
 
 
@@ -13,14 +11,15 @@ function isAuth (req, res, next){
   }
 
   const token  = req.headers.authorization.split("")[1]
-  const payload = jwt.decode(token, config.SECRET_TOKEN)
 
-  if (payload.exp <= moment().unix()){
-  return res.status(401).send({message: 'El token a expirado'})
-  }
-
-  req.user = payload.sub
-  next()
+  services.decodeToken(token)
+    .then(response =>{
+       req.user = response
+       next()
+    })
+    .catch(response =>{
+      res.status(response.status)
+    })
 }
 
 module.exports = isAuth
