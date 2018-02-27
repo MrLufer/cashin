@@ -4,9 +4,10 @@ const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require ('body-parser');
-const passport = require('passport');
-const passportConfig = require('./config/passport');
 
+//Cargando rutas
+
+const index = require('./routes/index');
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/auth';
 
@@ -22,11 +23,7 @@ mongoose.connection.on('error',(err)=>{
 })
 
 
-app.use(passport.initialize());
-app.use(passport.session());
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(session({
@@ -45,27 +42,9 @@ app.engine('.hbs',hbs({
 
 app.set('view engine','.hbs')
 
-app.get('/', (req,res)=>{
 
-	res.send('Hola');
-})
 
-app.get('/index',(req,res)=>{
-	res.render('index')
-})
-
-app.get('/registro',(req,res)=>{
-	res.render('registro')
-})
-
-const controladorUser = require('./controls/user');
-app.post('/signup',controladorUser.postSignup);
-app.post('/login',controladorUser.postLogin);
-app.get('/logout',passportConfig.estaAutenticado,controladorUser.logout);
-
-app.get('/usuarioinfo',passportConfig.estaAutenticado,(req,res)=>{
-	res.json(req.user);
-})
+app.use('/', index)
 
 app.listen(3000,()=>{
 	console.log('sevidor corriendo');

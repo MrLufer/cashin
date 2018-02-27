@@ -5,10 +5,10 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   ruc: {type: Number ,unique: true, required:true},
   password: {type: String, required:true, select:false},
-  name: {type: String, required:true}
-  singupDate {type: Date, default: Date.now()},
-  lastLogin Date
-}
+  name: {type: String, required:true},
+  singupDate: {type: Date, default: Date.now()},
+  lastLogin: Date
+})
 
 UserSchema.pre('save',(next)=>{
   let user = this
