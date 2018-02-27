@@ -13,6 +13,15 @@ api.get('/', (req,res)=>{
 	res.render('index');
 })
 
+api.get('/welcome', (req,res)=>{
+
+	res.render('welcome');
+})
+
+api.get('/calendario',(req,res)=>{
+  res.render('calendario')
+})
+
 api.get('/cpagar',(req,res)=>{
   res.render('cpagar')
 })
