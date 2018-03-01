@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const path = require('path');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require ('body-parser');
 
@@ -35,6 +36,9 @@ app.use(session({
 		autoReconnect: true
 	})
 }))
+
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.engine('.hbs',hbs({
 	defaultLayout: 'default',
 	extname: '.hbs'

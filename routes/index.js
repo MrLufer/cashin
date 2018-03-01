@@ -15,11 +15,22 @@ api.get('/', (req,res)=>{
 
 api.get('/welcome', (req,res)=>{
 
-	res.render('welcome');
+	res.render('welcome',{
+    css: 'welcome_styles'
+  })
+})
+
+api.get('/olvide', (req,res)=>{
+
+	res.render('olvide',{
+    css: 'olvide_styles'
+  })
 })
 
 api.get('/calendario',(req,res)=>{
-  res.render('calendario')
+  res.render('calendario',{
+    css: 'calendario_styles'
+  })
 })
 
 api.get('/cpagar',(req,res)=>{
@@ -39,11 +50,15 @@ api.get('/index',(req,res)=>{
 })
 
 api.get('/registro',(req,res)=>{
-	res.render('registro')
+	res.render('registro',{
+    css: 'registro_styles'
+  })
 })
 
 api.get('/admuser',(req,res)=>{
-	res.render('admuser')
+	res.render('admuser',{
+    css: 'admuser_styles'
+  })
 })
 
 api.get('/ctscobrar',(req,res)=>{
@@ -52,6 +67,11 @@ api.get('/ctscobrar',(req,res)=>{
 
 api.get('/master',(req,res)=>{
   res.render('master')
+})
+
+
+api.get('/flujos',(req,res)=>{
+  res.render('flujos')
 })
 
 api.post('/signup', userCtrl.signUp)
