@@ -1,4 +1,15 @@
-<div class="container-fluid centerp">
+<script type="text/javascript">
+
+
+ function hacer(){
+   document.getElementById("contenedor").appendChild("val1");
+ }
+
+
+</script>
+
+<div id="contenedor" class="container-fluid centerp">
+
       <h1>¡Bienvenid@! Registra una nueva empresa</h1>
       <br>
 
@@ -14,23 +25,29 @@
       </div>
 
 
-      <div class="row">
-        <div class="col-lg-4">  <div class="form-group">
+      <div id="val1" class="row">
+        <div class="col-lg-3">  <div class="form-group">
     <label for="exampleInputEmail1"><b>DNI</b></label>
     <input type="number" class="form-control"  placeholder="">
   </div></div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
 
    <div class="form-group">
     <label for="exampleInputEmail1"><b>RUC</b></label>
     <input type="number" class="form-control"  placeholder="">
   </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="form-group">
     <label for="exampleInputEmail1"><b>Mail</b></label>
     <input type="email" class="form-control"  placeholder="">
   </div>
+        </div>
+
+        <div class="col-lg-2">
+
+          <br>
+        <button  class="btn btn-primary" onclick="hacer()" >+</button>
         </div>
 
       </div>
@@ -38,22 +55,28 @@
       <h4>Ingresar Usuarios</h4>
 
      <div class="row">
-        <div class="col-lg-4">  <div class="form-group">
+        <div class="col-lg-3">  <div class="form-group">
     <label for="exampleInputEmail1"><b>DNI</b></label>
     <input type="number" class="form-control"  placeholder="">
   </div></div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
 
    <div class="form-group">
     <label for="exampleInputEmail1"><b>RUC</b></label>
     <input type="number" class="form-control"  placeholder="">
   </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="form-group">
     <label for="exampleInputEmail1"><b>Mail</b></label>
     <input type="email" class="form-control"  placeholder="">
   </div>
+        </div>
+
+        <div class="col-lg-2">
+
+          <br>
+        <button href="/welcome" class="btn btn-primary" role="button">+</button>
         </div>
 
       </div>
@@ -87,7 +110,7 @@
           <a href="/welcome" class="btn btn-primary" role="button">Enviar e Imprimir</a>
 
 
-        
+
 
 
         </div>
