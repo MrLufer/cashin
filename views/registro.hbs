@@ -1,9 +1,14 @@
 <script type="text/javascript">
 
 
- function hacer(){
-   document.getElementById("contenedor").appendChild("val1");
+function enviar(){
+ //e.preventDefault();
+ var output = document.getElementById("output");
+ if ( document.getElementById("accept").checked === false) {
+   output.innerHTML = "<font color='red'>Por favor, acepte los T&#233;rminos y Condiciones.</font>";
+   return false;
  }
+}
 
 
 </script>
@@ -85,10 +90,10 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
 
-  <div class="form-check form-check-inline">
-    <label class="form-check-label" for="inlineCheckbox1"><b>Autorizar para las operaciones</b></label>
+  
+      <label> <input type="checkbox" name="facultades"> Autorizar para operaciones </label>
 
-  <input class="form-check-input ml-2" type="checkbox" id="inlineCheckbox1" value="option1">
+
 
 </div>
         <div class="col-lg-4">
@@ -107,7 +112,8 @@
         <a class="nav-item nav-link mr-4" href="#" data-toggle="modal" data-target="#terminos" ><b> Revisar Términos y Condiciones</b></a> </div>
 
         <div class="col-lg-6">
-          <a href="/welcome" class="btn btn-primary" role="button">Enviar e Imprimir</a>
+          <button class="btn btn-primary" onclick="enviar()" >Enviar e Imprimir</button>
+          <a href="/index" class="btn btn-danger"> Volver </a>
 
 
 
@@ -146,12 +152,9 @@
        </p>
       </div>
       <div class="modal-footer">
-        <div class="form-check form-check-inline">
-    <label class="form-check-label" for="inlineCheckbox1"><b>Acepto</b></label>
-
-  <input class="form-check-input ml-2" type="checkbox" id="inlineCheckbox1" value="option1">
-
-</div>
+        <label>
+              <input type="checkbox" id="accept"> Acepto
+            </label>
       </div>
     </div>
   </div>

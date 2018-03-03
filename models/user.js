@@ -3,23 +3,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  ruc: {type: Number ,unique: true, required:true},
-  password: {type: String, required:true, select:false},
+  ruc: {type: Number, unique: true,lowercase:true},
+  password: {type: String,  select:false},
   name: {type: String, required:true},
   singupDate: {type: Date, default: Date.now()},
   lastLogin: Date
 })
 
-UserSchema.pre('save',(next)=>{
+UserSchema.pre('save',  (next)=> {
   let user = this
-  if(!user.isModified('password')) return next()
-
-  bcrypt.genSalt(10,(err,salt)=>{
+  if (!user.isModified('password')) return next()
+  bcrypt.genSalt(10, (err, salt) => {
     if (err) return next(err)
-    bcrypt.hash(user.password,salt,null,(err,hash)=>{
-      if(err) return next(err)
 
-      user.password = hash
+    bcrypt.hash(user.password, salt, null, (err, hash) => {
+      if (err) return next(err)
+      this.password = hash
       next()
     })
   })

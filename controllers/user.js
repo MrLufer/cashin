@@ -1,49 +1,38 @@
-const passport = require('passport');
-const User = require('../models/user');
+'use strict'
 
-exports.postSignup = (req,res,next)=>{
-  const nuevoUsuario = new User({
-    ruc: req.body.ruc,
-    name: req.body.name,
-    password: req.body.password
-  });
-  User.findOne({ruc: req.body.ruc}, (err,usuarioExistente)=>{
-    if(usuarioExistente){
-      return res.status(400).send('Ya esta registrado');
-    }
+const mongoose = require ('mongoose')
+const User = require('../models/user')
+const service = require('../services')
 
-    nuevoUsuario.save((err)=>{
-      if(err){
-        next(err);
-      }
-      req.logIn(nuevoUsuario,(err)=>{
-        if(err){
-          next(err);
-        }
-        res.send('Usuario creado exitosamente');
-      })
+function signUp (req,res){
+ const user = new User({
+   ruc: req.body.ruc,
+   password: req.body.password
+
+ })
+
+ user.save((err)=>{
+   if(err) return res.status(500).send({message:'Error al crear usuario'})
+   return res.status(201).send({token: service.createToken(user)})
+ })
+
+}
+
+function signIn (req,res){
+
+  User.find({ruc: req.body.ruc}, (err,user)=>{
+    if(err) return res.status(500).send({message: err})
+    if(!user) return res.status(404).send({message: 'No existe el usuario'})
+
+    req.user = user
+    res.status(200).send({
+      message: ' Te has logeado',
+      token: service.createToken(user)
     })
   })
 }
 
-exports.postLogin = (req,res,next)=>{
-  passport.authenticate('local',(err,user,info)=>{
-    if(err){
-      next(err);
-    }
-    if(!user){
-      return res.status(400).send('Ruc o contraseña invalidos');
-    }
-    req.logIn(user,(err)=>{
-      if(err){
-        next(err);
-      }
-      res.send('Login exitoso');
-    })
-  })(req,res,next);
-}
-
-exports.logout = (req,res)=>{
-  req.logout();
-  res.send('Logout exitoso');
+module.exports = {
+  signUp,
+  signIn
 }

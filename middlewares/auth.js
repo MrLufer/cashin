@@ -1,4 +1,6 @@
 
+
+
 const services = require ('../services')
 const config = require ( '../config')
 
@@ -10,7 +12,7 @@ function isAuth (req, res, next){
     })
   }
 
-  const token  = req.headers.authorization.split("")[1]
+  var token = req.headers.authorization.split(" ")[1];
 
   services.decodeToken(token)
     .then(response =>{

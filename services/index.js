@@ -6,7 +6,7 @@ const moment = require('moment')
 
 function createToken(user){
   const payload = {
-    sub: user._ruc,
+    sub: user._id,
     iat: moment().unix(),
     exp: moment().add(14,'days').unix(),
   }
