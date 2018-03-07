@@ -7,15 +7,13 @@
 
          </div>
          <div class="col-lg-4">
-          <a href="/calendario" class="btn btn-primary ancho" role="button">EMPRESA 1 SAC</a>
+          <button type='button' class='btn btn-primary' onclick='calendario(this.id)' id='38'> BUSINESS TO BEYOND S.A. </button>
+
          </div>
 
          <div class="col-lg-4">
 
          </div>
-
-
-
 
        </div>
       <br>
@@ -88,3 +86,23 @@
           </div>
 
   </div>
+
+  <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+
+  <script>
+function calendario(item){
+
+  alert('gg')
+  /*if (item){
+    $.ajax({
+    type: "POST",
+    url: "php_inc/setSes.php",
+    data: { ses:item },
+    success: function(data){
+      if ( data == "ok" ) { window.location.href = "calendario.php"; }
+    }
+    });
+  }*/
+
+  window.location.href='http://localhost:3000/registro'
+</script>

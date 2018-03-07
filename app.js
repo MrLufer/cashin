@@ -45,7 +45,10 @@ app.get('/calendario',(req,res)=>{
 })
 
 app.get('/cpagar',(req,res)=>{
-  res.render('cpagar')
+  res.render('cpagar',{
+    css: 'cpagar_styles',
+    js: 'pagar'
+  })
 })
 
 app.get('/consultaEmpresa',(req,res)=>{
