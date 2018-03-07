@@ -13,8 +13,12 @@ const UserSchema = new Schema({
   signupDate: { type: Date, default: Date.now() },
   lastLogin: Date,
   email: { type: String},
+
   rucrep: { type: Number},
-  
+  dniuser: {type: Number},
+  nameuser: {type: String},
+  emailuser: {type: String}
+
 })
 
 UserSchema.pre('save', (next) => {
