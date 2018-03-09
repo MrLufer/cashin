@@ -7,7 +7,7 @@ const auth = require('../middlewares/auth')
 const api = express.Router()
 
 
-//api.get('/factura', cuentaCtrl.)
+api.get('/obcuenta', cuentaCtrl.getCuenta)
 api.post('/cuenta', cuentaCtrl.saveCuenta)
 api.post('/signup', userCtrl.signUp)
 api.post('/signin', userCtrl.signIn)

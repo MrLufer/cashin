@@ -82,7 +82,10 @@ app.get('/admuser',(req,res)=>{
 })
 
 app.get('/ctscobrar',(req,res)=>{
-  res.render('ctscobrar')
+  res.render('ctscobrar',{
+    css: 'ctscobrar'
+  })
+
 })
 
 app.get('/master',(req,res)=>{

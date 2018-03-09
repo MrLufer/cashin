@@ -118,3 +118,15 @@
           </div>
 
   </div>
+
+
+
+  <script>
+  window.onload=function() {
+    fetch('/api/obcuenta')
+    .then((res)=> res.json())
+    .then((data)=> {
+      console.log(data.cuenta[1].descripcion)
+    })
+  }
+  </script>

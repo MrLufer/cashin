@@ -16,22 +16,25 @@ function saveCuenta (req, res) {
   cuenta.telefono = req.body.telefono
   cuenta.estado = req.body.estado
 
-  cuenta.save((err, productStored) => {
+  cuenta.save((err, cuentaStored) => {
     if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err} `})
 
-    res.status(200).send({ cuenta: productStored })
+    res.status(200).send({ cuenta: cuentaStored })
   })
 }
 
+function getCuenta (req, res) {
+  Cuenta.find({}, (err, cuenta) => {
+    if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
+    if (!cuenta) return res.status(404).send({message: 'No existen productos'})
 
-function obtenerCuenta (req, res){
-
-
-
+    res.send(200, { cuenta })
+  })
 }
 
 
 
 module.exports = {
-  saveCuenta
+  saveCuenta,
+  getCuenta
 }
