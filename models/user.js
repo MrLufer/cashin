@@ -5,6 +5,8 @@ const Schema = mongoose.Schema
 const bcrypt = require('bcrypt-nodejs')
 const crypto = require('crypto')
 
+
+//MODELO DE LA EMPRESA
 const UserSchema = new Schema({
   dni: { type: Number, unique: true, lowercase: true },
   displayName: String,
@@ -12,13 +14,29 @@ const UserSchema = new Schema({
   password: { type: String, select: false },
   signupDate: { type: Date, default: Date.now() },
   lastLogin: Date,
-  email: { type: String},
-
-  rucrep: { type: Number},
   dniuser: {type: Number},
   nameuser: {type: String},
   emailuser: {type: String}
 
+})
+
+
+// REPRESENTANTE LEGAL
+const RepSchema = new Schema({
+
+  email: { type: String},
+  ruc: { type: Number},
+  dni: { type: Number}
+
+
+})
+
+
+const UsSchema = new Schema({
+
+  email: {type: String},
+  ruc: {type: Number},
+  dni: {type: Number}
 })
 
 UserSchema.pre('save', (next) => {

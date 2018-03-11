@@ -7,6 +7,8 @@ const auth = require('../middlewares/auth')
 const api = express.Router()
 
 
+api.post('/cuentaDeuda',cuentaCtrl.getCuentaEmpresaDeuda)
+api.post('/cuentaCobrar',cuentaCtrl.getCuentaEmpresa)
 api.get('/obcuenta', cuentaCtrl.getCuenta)
 api.post('/cuenta', cuentaCtrl.saveCuenta)
 api.post('/signup', userCtrl.signUp)

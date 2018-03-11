@@ -1,17 +1,4 @@
-<script type="text/javascript">
 
-
-function enviar(){
- //e.preventDefault();
- var output = document.getElementById("output");
- if ( document.getElementById("accept").checked === false) {
-   output.innerHTML = "<font color='red'>Por favor, acepte los T&#233;rminos y Condiciones.</font>";
-   return false;
- }
-}
-
-
-</script>
 
 <div id="contenedor" class="container-fluid centerp">
 
@@ -52,7 +39,7 @@ function enviar(){
         <div class="col-lg-2">
 
           <br>
-        <button  class="btn btn-primary" onclick="hacer()" >+</button>
+        <button  class="btn btn-primary" onclick="add('1')" >+</button>
         </div>
 
       </div>
@@ -153,7 +140,7 @@ function enviar(){
       </div>
       <div class="modal-footer">
         <label>
-              <input type="checkbox" id="accept"> Acepto
+              <input type="checkbox" id="accept" data-dismiss="modal"> Acepto
             </label>
       </div>
     </div>
@@ -162,4 +149,43 @@ function enviar(){
     <!-- Fin Modal -->
 
 
-    
+    <script type="text/javascript">
+
+    function add( div ){
+  var newfieldset = document.createElement("FIELDSET");
+  newfieldset.innerHTML = "\
+  <div class='input-group'>\
+    <span class='input-group-addon' id='sizing-addon2'> DNI </span>\
+    <input type='text' class='form-control' aria-describedby='sizing-addon2' name='dni"+div+"' maxlength='8' onkeyup='dni(this)'>\
+    <span class='input-group-addon' id='sizing-addon2'> Nombre </span>\
+    <input type='text' class='form-control' aria-describedby='sizing-addon2' name='name"+div+"' maxlength='100'>\
+    <span class='input-group-addon' id='sizing-addon2'> Email </span>\
+    <input type='email' class='form-control' aria-describedby='sizing-addon2' name='mail"+div+"' maxlength='62'>\
+    <span class='input-group-addon bg-blue' id='sizing-addon2' onclick='remove(this)'>-</span>\
+  </div>";
+  if ( div=="2" ){ newfieldset.innerHTML += "<label> <input type='checkbox' name='facultades'> Autorizar para operaciones </label>"; }
+  document.getElementById('wrapper'+div).appendChild(newfieldset);
+}
+
+
+    function enviar(){
+    //e.preventDefault();
+    var output = document.getElementById("output");
+    if ( document.getElementById("accept").checked === false) {
+      output.innerHTML = "<font color='red'>Por favor, acepte los T&#233;rminos y Condiciones.</font>";
+      return false;
+    }
+
+    var i,j,m,n;
+    var emp = [], leg = [], usu = [];
+
+    var emp_inp = document.getElementById("empresas").getElementsByTagName("input");
+    for ( i=0; i<emp_inp.length; i++ ){
+      if ( emp_inp[i].value=="" ) {
+        output.innerHTML = "<font color='red'>Indique RUC y Razon Social.</font>"; return false; }
+      else { output.innerHTML = ""; }
+      emp.push( emp_inp[i].value );
+    }}
+
+
+    </script>

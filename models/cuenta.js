@@ -5,6 +5,7 @@ const Schema = mongoose.Schema
 
 const CuentaSchema = Schema({
 
+  empresa: {type: String},
   proeevedor: {type: String},
   ruc: {type: Number },
   factura: {type: String},

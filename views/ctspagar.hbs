@@ -1,5 +1,5 @@
 <div class="container">
-      <h1>Cuentas por cobrar *******</h1>
+      <h1>Cuentas por pagar *******</h1>
 
       <br>
       <div class="row textcenter ">
@@ -123,7 +123,7 @@
 
   <script>
   window.onload=function() {
-    fetch('/api/cuentaCobrar')
+    fetch('/api/cuentaDeuda')
     .then((res)=> res.json())
     .then((data)=> {
       var element = document.createElement('ul')

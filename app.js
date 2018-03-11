@@ -88,9 +88,30 @@ app.get('/ctscobrar',(req,res)=>{
 
 })
 
+app.get('/ctspagar',(req,res)=>{
+  res.render('ctspagar',{
+    css: 'ctspagar'
+  })
+
+})
+
 app.get('/master',(req,res)=>{
   res.render('master',{
     js: 'master'
+
+  })
+})
+
+app.get('/password',(req,res)=>{
+  res.render('password',{
+  css: 'password'
+
+  })
+})
+
+app.get('/generatepassword',(req,res)=>{
+  res.render('generatePass',{
+  css: 'password'
 
   })
 })

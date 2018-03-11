@@ -7,6 +7,7 @@ function saveCuenta (req, res) {
   console.log(req.body)
 
   let cuenta = new Cuenta()
+  cuenta.empresa = req.body.empresa
   cuenta.proeevedor = req.body.proeevedor
   cuenta.ruc = req.body.ruc
   cuenta.monto = req.body.monto
@@ -26,15 +27,45 @@ function saveCuenta (req, res) {
 function getCuenta (req, res) {
   Cuenta.find({}, (err, cuenta) => {
     if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
-    if (!cuenta) return res.status(404).send({message: 'No existen productos'})
+    if (!cuenta) return res.status(404).send({message: 'No existe las cuentas'})
 
     res.send(200, { cuenta })
   })
+}
+
+function getCuentaEmpresa (req,res){
+  let emp = req.body.empresa
+  console.log(emp)
+  Cuenta.find({empresa: emp,monto: {$gt: 0}}, (err, cuenta) => {
+    if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
+    if (!cuenta) return res.status(404).send({message: 'No existe las cuentas'})
+
+    res.send(200, { cuenta })
+  })
+
+
+
+
+}
+
+
+function getCuentaEmpresaDeuda (req,res){
+  let emp = req.body.empresa
+  console.log(emp)
+  Cuenta.find({empresa: emp,monto: {$lt: 0}}, (err, cuenta) => {
+    if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
+    if (!cuenta) return res.status(404).send({message: 'No existe las cuentas'})
+
+    res.send(200, { cuenta })
+  })
+
 }
 
 
 
 module.exports = {
   saveCuenta,
-  getCuenta
+  getCuenta,
+  getCuentaEmpresa,
+  getCuentaEmpresaDeuda
 }
