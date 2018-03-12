@@ -26,9 +26,8 @@ const RepSchema = new Schema({
 
   email: { type: String},
   ruc: { type: Number},
-  dni: { type: Number}
-
-
+  dni: { type: Number},
+  active: {type: Boolean, required: true, default: false}
 })
 
 
@@ -36,7 +35,8 @@ const UsSchema = new Schema({
 
   email: {type: String},
   ruc: {type: Number},
-  dni: {type: Number}
+  dni: {type: Number},
+  active: {type: Boolean, required: true, default: false}
 })
 
 UserSchema.pre('save', (next) => {
