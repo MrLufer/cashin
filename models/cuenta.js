@@ -8,7 +8,7 @@ const CuentaSchema = Schema({
   empresa: {type: String},
   proeevedor: {type: String},
   ruc: {type: Number },
-  factura: {type: String},
+  factura: {type: String, unique: true },
   monto: {type: Number},
   fechaemision: {type: String},
   fechavencimiento: {type: String},

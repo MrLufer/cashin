@@ -11,6 +11,7 @@ function saveCuenta (req, res) {
   cuenta.proeevedor = req.body.proeevedor
   cuenta.ruc = req.body.ruc
   cuenta.monto = req.body.monto
+  cuenta.factura = req.body.factura
   cuenta.fechaemision = req.body.fechaemision
   cuenta.fechavencimiento = req.body.fechavencimiento
   cuenta.descripcion = req.body.descripcion
@@ -60,6 +61,8 @@ function getCuentaEmpresaDeuda (req,res){
   })
 
 }
+
+
 
 
 
