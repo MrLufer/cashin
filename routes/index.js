@@ -11,6 +11,7 @@ const api = express.Router()
 //email route
 api.post('/email', EmailCtrl.sendEmail);
 api.post ('/getdniuser', masterCtrl.getUserDni)
+api.post('/getempuser',masterCtrl.admuser)
 api.post ('/adduser', masterCtrl.saveUser)
 api.post ('/getuser',masterCtrl.getUsuariosEmpresa)
 api.post('/cuentaDeuda',cuentaCtrl.getCuentaEmpresaDeuda)

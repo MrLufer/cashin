@@ -7,9 +7,10 @@
 
 </div>
         <div class="col-lg-3">
-      <input type="text" class=" specialinput" id="usr">
+      <input type="text" class=" specialinput" id="obtenerdni">
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
+          <button type="button" class="btn btn-primary" onclick="enviar()">Buscar</button>
 
         </div>
       </div>
@@ -113,6 +114,32 @@
           <input class="btn btn-sm btn-default" type="submit" value="Agregar">
 
   </div>
+
+
+
+<script type="text/javascript">
+
+function enviar(){
+
+  var x = document.getElementById("obtenerdni").value
+  var z =  JSON.stringify({
+  empresa: x
+
+})
+
+console.log(z)
+
+ console.log(x)
+  fetch('/api/getuser', {
+    method: 'POST',
+    body: z
+  })
+  .then(res=>res.json())
+  .then(res => console.log(res));
+
+}
+</script>
+
 
 <script type="text/javascript">
 function addUser( div ){

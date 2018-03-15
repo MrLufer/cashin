@@ -5,7 +5,7 @@ exports.sendEmail = function(req, res){
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'luis.apaza3@unmsm.edu.pe',
+            user: 'Admin@cashin.pe',
             pass: 'EGRURY51LALALA45'
         }
     });
@@ -14,7 +14,7 @@ exports.sendEmail = function(req, res){
 const url = 'http://localhost:3000/generatepassword/${emailToken}';
 
 var mailOptions = {
-    from: 'Remitente',
+    from: 'Admin@cashin.pe',
     to: req.body.correo,
     subject: 'Bienvenido a Cashin!',
     html: 'Bienvenido a Cashin, verifique su correo haciendo click <a href="${url}">aquí</a> para activar tu cuenta'

@@ -45,7 +45,23 @@ function saveUser (req,res){
 
 }
 
+
+function admuser (req,res){
+  let dni = req.body.dni
+  let emp = req.body.empresa
+  console.log(dni)
+  Rep.find({dni: dni , empresa: emp},(err,usuario)=>{
+    if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
+    if (!usuario) return res.status(404).send({message: 'No existen usuarios registrados'})
+
+    res.send(200, { usuario })
+
+  })
+}
+
+
 module.exports = {
+  admuser,
   saveUser,
   getUsuariosEmpresa,
   getUserDni

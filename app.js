@@ -126,4 +126,11 @@ app.get('/flujos',(req,res)=>{
 
 })
 
+
+app.get('/changedpass',(req,res)=>{
+  res.render('changepass',{
+    css: 'change'
+  })
+})
+
 module.exports = app
