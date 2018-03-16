@@ -127,17 +127,21 @@ function enviar(){
 
 })
 
-console.log(z)
 
- console.log(x)
-  fetch('/api/getuser', {
+  $.ajax({
+    url: '/api/getuser',
+    type: 'POST',
     method: 'POST',
-    body: z
-  })
-  .then(res=>res.json())
-  .then(res => console.log(res));
+    data: {dni: x},
+    success:function(data) {
+      if ( data == "Ok" ) { window.location.href = url; }
+      else { small.innerHTML = "Error al hacer el pedido. Int&#233;ntelo de nuevo o consulte con un administrador."; }
+    }
+  });
 
 }
+
+
 </script>
 
 
