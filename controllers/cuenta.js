@@ -63,12 +63,25 @@ function getCuentaEmpresaDeuda (req,res){
 }
 
 
+function getFactura (req,res){
+  let emp = req.body.empresa
+  let fac = req.body.factura
+  Cuenta.find({empresa: emp,factura: fac}, (err, cuenta) => {
+    if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
+    if (!cuenta) return res.status(404).send({message: 'No existe las cuentas'})
+
+    res.send(200, { cuenta })
+  })
+  
+}
+
 
 
 
 module.exports = {
   saveCuenta,
   getCuenta,
+  getFactura,
   getCuentaEmpresa,
   getCuentaEmpresaDeuda
 }
