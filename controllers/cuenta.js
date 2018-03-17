@@ -14,6 +14,7 @@ function saveCuenta (req, res) {
   cuenta.factura = req.body.factura
   cuenta.fechaemision = req.body.fechaemision
   cuenta.fechavencimiento = req.body.fechavencimiento
+  cuenta.personacontacto = req.body.personacontacto
   cuenta.descripcion = req.body.descripcion
   cuenta.telefono = req.body.telefono
   cuenta.estado = req.body.estado
@@ -72,7 +73,7 @@ function getFactura (req,res){
 
     res.send(200, { cuenta })
   })
-  
+
 }
 
 

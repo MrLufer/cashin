@@ -36,9 +36,21 @@
 
     </div>
 
-    <script type="text/javascript">
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
-    
+      <script>
+
+      $(document).ready(function login(){
+        $.ajax({
+             url: '/api/regempresa',
+             type: 'POST',
+             method: 'POST',
+             data: {ruc: ruc, razon:razon },
+             success: function(data){
+             console.log(data);}
+           });
+
+      });
 
 
-    </script>
+      </script>

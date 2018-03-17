@@ -51,6 +51,14 @@ app.get('/cpagar',(req,res)=>{
   })
 })
 
+app.get('/ccobrar',(req,res)=>{
+  res.render('ccobrar',{
+    css: 'cpagar_styles',
+    js: 'pagar'
+  })
+})
+
+
 app.get('/consultaEmpresa',(req,res)=>{
   res.render('consultaE',{
     css: 'consultaE_styles'

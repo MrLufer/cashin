@@ -1,5 +1,5 @@
 <div class="container-fluid centerp">
-      <h1>Cuenta por Cobrar</h1>
+      <h1 id="">Cuenta por Cobrar</h1>
       <br>
      <div class="row">
         <div class="col-lg-4">
@@ -7,11 +7,11 @@
 
 </div>
         <div class="col-lg-4">
-      <label for="exampleInputEmail1">Marcelino S.A</label>
+      <label for="exampleInputEmail1" id="pro">Marcelino S.A</label>
         </div>
         <div class="col-lg-4">
 
-  <label for="exampleInputEmail1">RUC: 1234567</label>
+  <label for="exampleInputEmail1" id="ruc">RUC: 1234567</label>
 
 
         </div>
@@ -21,7 +21,7 @@
      <label for="exampleInputEmail1">Factura:</label>
  </div>
          <div class="col-lg-4">
-            <label for="exampleInputEmail1">124423-45</label>
+            <label for="exampleInputEmail1" id="factura">124423-45</label>
          </div>
          <div class="col-lg-4">
 
@@ -35,7 +35,7 @@
       <label for="exampleInputEmail1">Monto:</label>
   </div>
           <div class="col-lg-4">
-             <label for="exampleInputEmail1">2000000 soles</label>
+             <label for="exampleInputEmail1" id="monto">2000000 soles</label>
           </div>
           <div class="col-lg-4">
 
@@ -48,7 +48,7 @@
        <label for="exampleInputEmail1">Fecha de Emisión:</label>
    </div>
            <div class="col-lg-4">
-              <label for="exampleInputEmail1">04/05/18</label>
+              <label for="exampleInputEmail1" id="emision">04/05/18</label>
            </div>
            <div class="col-lg-4">
 
@@ -61,7 +61,7 @@
         <label for="exampleInputEmail1">Fecha de Vencimiento:</label>
     </div>
             <div class="col-lg-4">
-               <label for="exampleInputEmail1">04/05/18</label>
+               <label for="exampleInputEmail1" id="vencimiento">04/05/18</label>
             </div>
             <div class="col-lg-4">
             </div>
@@ -72,7 +72,7 @@
          <label for="exampleInputEmail1">Descripción:</label>
      </div>
              <div class="col-lg-4">
-                <label for="exampleInputEmail1">1 millar de panetones</label>
+                <label for="exampleInputEmail1" id="descripcion">1 millar de panetones</label>
              </div>
              <div class="col-lg-4">
              </div>
@@ -82,7 +82,7 @@
           <label for="exampleInputEmail1">Persona de Contacto:</label>
       </div>
               <div class="col-lg-4">
-                 <label for="exampleInputEmail1">Juan Perez</label>
+                 <label for="exampleInputEmail1" id="contacto">Juan Perez</label>
               </div>
               <div class="col-lg-4">
               </div>
@@ -92,7 +92,7 @@
            <label for="exampleInputEmail1">Telefono:</label>
        </div>
                <div class="col-lg-4">
-                  <label for="exampleInputEmail1">987654321</label>
+                  <label for="exampleInputEmail1" id="telefono">987654321</label>
                </div>
                <div class="col-lg-4">
                </div>
@@ -102,7 +102,7 @@
             <label for="exampleInputEmail1">Estado:</label>
         </div>
                 <div class="col-lg-4">
-                   <label for="exampleInputEmail1">Pagado(PersonaX)</label>
+                   <label for="exampleInputEmail1" id="estado">Pagado(PersonaX)</label>
                 </div>
                 <div class="col-lg-4">
                     <button type="button" class="btn btn-primary">Ver sustento</button>
@@ -130,3 +130,36 @@
             </div>
           </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+
+  <script type="text/javascript">
+
+  $(document).ready(function cargarFac(){
+    $.ajax({
+         url: '/api/getfactura',
+         type: 'POST',
+         method: 'POST',
+         data: {empresa:"EMPRESA 2" , factura:"E110B"},
+         success: function(data){
+         console.log(data.cuenta[0]);
+         $("#ruc").text("RUC: "+data.cuenta[0].ruc);
+         $("#pro").text(data.cuenta[0].proeevedor);
+         $("#factura").text(data.cuenta[0].factura);
+         $("#monto").text(data.cuenta[0].monto+" Soles");
+         $("#estado").text(data.cuenta[0].estado);
+         $("#telefono").text(data.cuenta[0].telefono);
+         $("#emision").text(data.cuenta[0].fechaemision);
+         $("#vencimiento").text(data.cuenta[0].fechavencimiento);
+         $("#descripcion").text(data.cuenta[0].descripcion);
+         $("#contacto").text(data.cuenta[0].personacontacto);
+    }
+       });
+
+  });
+
+
+
+
+  </script>

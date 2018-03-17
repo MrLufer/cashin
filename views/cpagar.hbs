@@ -8,11 +8,11 @@
 
 </div>
         <div class="col-lg-4">
-      <label for="exampleInputEmail1">Marcelino S.A</label>
+      <label for="exampleInputEmail1" id="pro"></label>
         </div>
         <div class="col-lg-4">
 
-  <label for="exampleInputEmail1">RUC: 1234567</label>
+  <label for="exampleInputEmail1" id="ruc"></label>
 
 
         </div>
@@ -22,7 +22,7 @@
      <label for="exampleInputEmail1">Factura:</label>
  </div>
          <div class="col-lg-4">
-            <label for="exampleInputEmail1">124423-45</label>
+            <label for="exampleInputEmail1" id="factura"></label>
          </div>
          <div class="col-lg-4">
 
@@ -36,7 +36,7 @@
       <label for="exampleInputEmail1">Monto:</label>
   </div>
           <div class="col-lg-4">
-             <label for="exampleInputEmail1">2000000 soles</label>
+             <label for="exampleInputEmail1" id="monto"></label>
           </div>
           <div class="col-lg-4">
 
@@ -49,7 +49,7 @@
        <label for="exampleInputEmail1">Fecha de Emisión:</label>
    </div>
            <div class="col-lg-4">
-              <label for="exampleInputEmail1">04/05/18</label>
+              <label for="exampleInputEmail1" id="emision"></label>
            </div>
            <div class="col-lg-4">
 
@@ -62,7 +62,7 @@
         <label for="exampleInputEmail1">Fecha de Vencimiento:</label>
     </div>
             <div class="col-lg-4">
-               <label for="exampleInputEmail1">04/05/18</label>
+               <label for="exampleInputEmail1" id="vencimiento"></label>
             </div>
             <div class="col-lg-4">
 
@@ -75,7 +75,7 @@
          <label for="exampleInputEmail1">Descripción:</label>
      </div>
              <div class="col-lg-4">
-                <label for="exampleInputEmail1">1 millar de panetones</label>
+                <label for="exampleInputEmail1" id="descripcion"></label>
              </div>
              <div class="col-lg-4">
 
@@ -88,7 +88,7 @@
           <label for="exampleInputEmail1">Persona de Contacto:</label>
       </div>
               <div class="col-lg-4">
-                 <label for="exampleInputEmail1">Juan Perez</label>
+                 <label for="exampleInputEmail1" id="contacto"></label>
               </div>
               <div class="col-lg-4">
 
@@ -101,7 +101,7 @@
            <label for="exampleInputEmail1">Telefono:</label>
        </div>
                <div class="col-lg-4">
-                  <label for="exampleInputEmail1">987654321</label>
+                  <label for="exampleInputEmail1" id="telefono"></label>
                </div>
                <div class="col-lg-4">
 
@@ -111,10 +111,10 @@
              </div>
              <div class="row">
                 <div class="col-lg-4">
-            <label for="exampleInputEmail1">Estado:</label>
+            <label for="exampleInputEmail1" >Estado:</label>
         </div>
                 <div class="col-lg-4">
-                   <label for="exampleInputEmail1">Pendiente</label>
+                   <label for="exampleInputEmail1" id="estado"></label>
                 </div>
                 <div class="col-lg-4">
 
@@ -303,9 +303,27 @@ $(document).ready(function cargarFac(){
        url: '/api/getfactura',
        type: 'POST',
        method: 'POST',
-       data: {empresa:"EMPRESA" , factura:"E111B"},
+       data: {empresa:"EMPRESA 2" , factura:"E110B"},
        success: function(data){
-       console.log(data);}
+       console.log(data.cuenta[0]);
+
+       var num = data.cuenta[0].monto;
+       var n = num.toString();
+       var newmonto = n.substr(1)
+       console.log(newmonto);
+
+
+       $("#ruc").text("RUC: "+data.cuenta[0].ruc);
+       $("#pro").text(data.cuenta[0].proeevedor);
+       $("#factura").text(data.cuenta[0].factura);
+       $("#monto").text(newmonto +" Soles");
+       $("#estado").text(data.cuenta[0].estado);
+       $("#telefono").text(data.cuenta[0].telefono);
+       $("#emision").text(data.cuenta[0].fechaemision);
+       $("#vencimiento").text(data.cuenta[0].fechavencimiento);
+       $("#descripcion").text(data.cuenta[0].descripcion);
+       $("#contacto").text(data.cuenta[0].personacontacto);
+  }
      });
 
 });

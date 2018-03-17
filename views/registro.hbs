@@ -10,81 +10,51 @@
        <div class="row">
         <div class="col-lg-4">  <div class="form-group">
     <label for="exampleInputEmail1"><b>Ingresar RUC</b></label>
-    <input type="number" class="form-control"  placeholder="">
+    <input type="number" class="form-control" id="ruc"  placeholder="">
   </div></div>
   <div class="col-lg-4">  <div class="form-group">
 <label for="exampleInputEmail1"><b>Ingresar Razon social</b></label>
-<input type="text" class="form-control"  placeholder="">
+<input type="text" class="form-control" id="razon"  placeholder="">
 </div></div>
 
 
       </div>
-
-       <h4>Ingresar Representante Legal</h4>
-
-
-      <div id="val1" class="row">
-        <div class="col-lg-3">  <div class="form-group">
-    <label for="exampleInputEmail1"><b>DNI</b></label>
-    <input type="number" class="form-control"  placeholder="">
-  </div></div>
-        <div class="col-lg-3">
-
-   <div class="form-group">
-    <label for="exampleInputEmail1"><b>Nombre</b></label>
-    <input type="text" class="form-control"  placeholder="">
-  </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="form-group">
-    <label for="exampleInputEmail1"><b>Mail</b></label>
-    <input type="email" class="form-control"  placeholder="">
-  </div>
-        </div>
-
-        <div class="col-lg-2">
-
-          <br>
-        <button  class="btn btn-primary" onclick="add('1')" >+</button>
-        </div>
-
-      </div>
+      <h4> Ingresar Representantes Legales: </h4>
+      <br>
+     <div id="wrapper1">
+       <fieldset>
+         <div class="input-group">
+           <span class="input-group-addon" id="sizing-addon1"> DNI </span>
+           <input type="text" class="form-control" aria-describedby="sizing-addon2" name="dni1" maxlength="8">
+           <span class="input-group-addon" id="sizing-addon2"> Nombre </span>
+           <input type="text" class="form-control" aria-describedby="sizing-addon2" name="name1" maxlength="100">
+           <span class="input-group-addon" id="sizing-addon3"> Email </span>
+           <input type="email" class="form-control" aria-describedby="sizing-addon2" name="mail1" maxlength="62">
+           <span class="input-group-addon bg-blue " onclick="add('1')"> + </span>
+         </div>
+       </fieldset>
+     </div>
+       <br>
 
       <h4>Ingresar Usuarios</h4>
 
-     <div class="row">
-        <div class="col-lg-3">  <div class="form-group">
-    <label for="exampleInputEmail1"><b>DNI</b></label>
-    <input type="number" class="form-control"  placeholder="">
-  </div></div>
-        <div class="col-lg-3">
+      <div id="wrapper2" class="centered">
+          <fieldset>
+            <div class="input-group">
+              <span class="input-group-addon" id="dni"> DNI </span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon2" name="dni2" maxlength="8">
+              <span class="input-group-addon" id="name"> Nombre </span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon2" name="name2">
+              <span class="input-group-addon" id="email"> Email </span>
+              <input type="email" class="form-control" aria-describedby="sizing-addon2" name="mail2">
+              <span class="input-group-addon bg-blue" onclick="add('2')"> + </span>
+            </div>
+            <br>
 
-   <div class="form-group">
-    <label for="exampleInputEmail1"><b>Nombre</b></label>
-    <input type="text" class="form-control"  placeholder="">
-  </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="form-group">
-    <label for="exampleInputEmail1"><b>Mail</b></label>
-    <input type="email" class="form-control"  placeholder="">
-  </div>
-        </div>
+            <label> <input type="checkbox" name="facultades"> Autorizar para operaciones </label>
 
-        <div class="col-lg-2">
+          </fieldset>
 
-          <br>
-        <button href="/welcome" class="btn btn-primary" role="button">+</button>
-        </div>
-
-      </div>
-
-       <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-
-
-      <label> <input type="checkbox" name="facultades"> Autorizar para operaciones </label>
 
 
 
@@ -105,7 +75,7 @@
         <a class="nav-item nav-link mr-4" href="#" data-toggle="modal" data-target="#terminos" ><b> Revisar Términos y Condiciones</b></a> </div>
 
         <div class="col-lg-6">
-          <button class="btn btn-primary" onclick="enviar()" >Enviar e Imprimir</button>
+          <button class="btn btn-primary" onclick="registro()" >Enviar e Imprimir</button>
           <a href="/index" class="btn btn-danger"> Volver </a>
 
 
@@ -155,12 +125,16 @@
     <!-- Fin Modal -->
 
 
-    <script type="text/javascript">
 
-    function add( div ){
+
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+      <script>
+      function add( div ){
   var newfieldset = document.createElement("FIELDSET");
   newfieldset.innerHTML = "\
   <div class='input-group'>\
+    <br>\
     <span class='input-group-addon' id='sizing-addon2'> DNI </span>\
     <input type='text' class='form-control' aria-describedby='sizing-addon2' name='dni"+div+"' maxlength='8' onkeyup='dni(this)'>\
     <span class='input-group-addon' id='sizing-addon2'> Nombre </span>\
@@ -173,25 +147,62 @@
   document.getElementById('wrapper'+div).appendChild(newfieldset);
 }
 
+function remove(clicked){
+  var fieldset = clicked.parentNode.parentNode;
+  fieldset.remove();
+}
 
-    function enviar(){
-    //e.preventDefault();
-    var output = document.getElementById("output");
-    if ( document.getElementById("accept").checked === false) {
-      output.innerHTML = "<font color='red'>Por favor, acepte los T&#233;rminos y Condiciones.</font>";
-      return false;
-    }
+      function registro(){
 
-    var i,j,m,n;
-    var emp = [], leg = [], usu = [];
-
-    var emp_inp = document.getElementById("empresas").getElementsByTagName("input");
-    for ( i=0; i<emp_inp.length; i++ ){
-      if ( emp_inp[i].value=="" ) {
-        output.innerHTML = "<font color='red'>Indique RUC y Razon Social.</font>"; return false; }
-      else { output.innerHTML = ""; }
-      emp.push( emp_inp[i].value );
-    }}
+        var ruc = document.getElementById('ruc').value
+        var razon = document.getElementById('razon').value
 
 
-    </script>
+
+
+        $.ajax({
+             url: '/api/regempresa',
+             type: 'POST',
+             method: 'POST',
+             data: {ruc: ruc, razon:razon },
+             success: function(data){
+             console.log(data);
+
+             reps();}
+
+
+           });
+         }
+
+     function reps(){
+
+                var email = document.getElementById('email').value;
+                var dni = document.getElementById('dni').value;
+                var name = document.getElementById('name').value;
+                var razon = document.getElementById('razon').value;
+
+         $.ajax({
+              url: '/api/adduser',
+              type: 'POST',
+              method: 'POST',
+              data: {email:email , dni:dni , name:name , empresa: razon },
+              success: function(data1){
+              
+            }
+
+          });
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </script>

@@ -1,104 +1,59 @@
-<div class="container">
-      <h1>Cuentas por cobrar *******</h1>
+<style>
+
+table.blueTable {
+
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+#mytable {
+
+  border: 1px solid #1C6EA4;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+</style>
+
+
+
+<div class="container ">
+      <h1>Cuentas por Cobrar *******</h1>
+
 
       <br>
-      <div class="row textcenter ">
-         <div class="col-lg-2">
-         <label>Empresa</label>
-         </div>
-         <div class="col-lg-2">
-           <label>Factura</label>
-         </div>
-
-         <div class="col-lg-2">
-         <label>Monto</label>
-         </div>
-         <div class="col-lg-2">
-            <label>Emisión</label>
-         </div>
-         <div class="col-lg-2">
-           <label>Vencimiento</label>
-         </div>
-
-         <div class="col-lg-2">
-           <label>Estado</label>
-         </div>
-       </div>
-      <br>
-      <div id="div" class="positiondiv">
+      <table class="blueTable" >
 
 
-        <div id="gg"class="row ">
-           <div class="col-lg-2">
+        <thead>
+              <tr>
+                <th> Empresa </th>
+                <th> Factura </th>
+                <th> Monto </th>
+                <th> Emision </th>
+                <th> Vencimiento </th>
+                <th> Estado </th>
+              </tr>
+              </thead>
 
-           </div>
-           <div class="col-lg-2">
-             <label>Factura</label>
-           </div>
+              <br>
 
-           <div class="col-lg-2">
-           <label>Monto</label>
-           </div>
-           <div class="col-lg-2">
-              <label>Emisión</label>
-           </div>
-           <div class="col-lg-2">
-             <label>Vencimiento</label>
-           </div>
+              </table>
 
-           <div class="col-lg-2">
-             <label>Estado</label>
-           </div>
-         </div>
 
-         <div class="row ">
-            <div class="col-lg-2">
-            <label>Empresa</label>
-            </div>
-            <div class="col-lg-2">
-              <label>Factura</label>
-            </div>
+        <div  class="positiondiv  " id="div1">
 
-            <div class="col-lg-2">
-            <label>Monto</label>
-            </div>
-            <div class="col-lg-2">
-               <label>Emisión</label>
-            </div>
-            <div class="col-lg-2">
-              <label>Vencimiento</label>
-            </div>
+        </div >
 
-            <div class="col-lg-2">
-              <label>Estado</label>
-            </div>
-          </div>
+             <br>
 
-          <div class="row ">
-             <div class="col-lg-2">
-             <label>Empresa</label>
-             </div>
-             <div class="col-lg-2">
-               <label>Factura</label>
-             </div>
 
-             <div class="col-lg-2">
-             <label>Monto</label>
-             </div>
-             <div class="col-lg-2">
-                <label>Emisión</label>
-             </div>
-             <div class="col-lg-2">
-               <label>Vencimiento</label>
-             </div>
 
-             <div class="col-lg-2">
-               <label>Estado</label>
-             </div>
-           </div>
-         </div>
 
-           <br>
+
            <br>
 
          <div class="row ">
@@ -119,19 +74,45 @@
 
   </div>
 
-
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
   <script>
-  window.onload=function() {
-    fetch('/api/cuentaCobrar')
-    .then((res)=> res.json())
-    .then((data)=> {
-      var element = document.createElement('ul')
-      var contenido = document.createTextNode(data.cuenta[1].proeevedor)
-      element.appendChild(contenido)
-      element.setAttribute("aling","center");
-      document.getElementById("gg").appendChild(element)
-      console.log(data.cuenta[1].descripcion)
-    })
-  }
+
+
+  $(document).ready(function cargarFacturas(){
+
+
+
+    $.ajax({
+         url: '/api/cuentaCobrar',
+         type: 'POST',
+         method: 'POST',
+         data: {empresa:"EMPRESA 2" },
+         success: function(data){
+         console.log(data);
+         var tbl=$("<table/>").attr("id","mytable");
+    $("#div1").append(tbl);
+    for(var i=0;i<data.cuenta.length;i++)
+    {
+        var tr="<tr>";
+        var td1="<td>"+data.cuenta[i]["empresa"]+"</td>";
+        var td2="<td>"+data.cuenta[i]["factura"]+"</td>";
+        var td3="<td style='color:green'>"+data.cuenta[i]["monto"]+"</td>";
+        var td4="<td>"+data.cuenta[i]["fechaemision"]+"</td>";
+        var td5="<td>"+data.cuenta[i]["fechavencimiento"]+"</td>";
+        var td6="<td>"+data.cuenta[i]["estado"]+"</td></tr>";
+
+       $("#mytable").append(tr+td1+td2+td3+td4+td5+td6);
+
+    }
+       }
+       });
+
+  });
+
+
+
+
+
+
   </script>

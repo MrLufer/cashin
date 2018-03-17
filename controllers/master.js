@@ -35,6 +35,7 @@ function saveUser (req,res){
   usuario.name = req.body.name
   usuario.dni = req.body.dni
   usuario.empresa = req.body.empresa
+  usuario.facultades = req.body.facultades
 
   usuario.save((err, usuarioStored) => {
     if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err} `})
