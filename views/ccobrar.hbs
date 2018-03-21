@@ -146,11 +146,12 @@
   }
 
   var id = getParameterByName('id');
+  var empresa = localStorage.getItem("empresa")
     $.ajax({
          url: '/api/getfactura',
          type: 'POST',
          method: 'POST',
-         data: {empresa:"EMPRESA 2" , factura:id},
+         data: {empresa:empresa , factura:id},
          success: function(data){
          console.log(data.cuenta[0]);
          $("#ruc").text("RUC: "+data.cuenta[0].ruc);
