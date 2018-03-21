@@ -120,7 +120,7 @@
                </div>
          <div class="row">
             <div class="col-lg-4">  <button type="button" class="btn btn-primary">Anterior</button>
-              <button type="button" class="btn btn-primary">Volver</button>
+              <a href="ctscobrar" class="btn btn-primary">Volver</a>
               <button type="button" class="btn btn-primary">Siguiente</button>
 
     </div>
@@ -137,11 +137,20 @@
   <script type="text/javascript">
 
   $(document).ready(function cargarFac(){
+
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  var id = getParameterByName('id');
     $.ajax({
          url: '/api/getfactura',
          type: 'POST',
          method: 'POST',
-         data: {empresa:"EMPRESA 2" , factura:"E110B"},
+         data: {empresa:"EMPRESA 2" , factura:id},
          success: function(data){
          console.log(data.cuenta[0]);
          $("#ruc").text("RUC: "+data.cuenta[0].ruc);

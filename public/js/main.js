@@ -1,7 +1,5 @@
 const CHART = document.getElementById("lineChart");
 console.log("CHART");
-
-
 var lineChart = new Chart(CHART, {
       type: 'bar',
       data: {

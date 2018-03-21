@@ -10,6 +10,8 @@ const api = express.Router()
 
 //email route
 api.post('/email', EmailCtrl.sendEmail);
+api.post('/buscar', cuentaCtrl.Buscar)
+api.post('/search', cuentaCtrl.Search)
 api.post('/getfactura', cuentaCtrl.getFactura)
 api.post ('/getdniuser', masterCtrl.getUserDni)
 api.post('/getempuser',masterCtrl.admuser)

@@ -70,7 +70,7 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 
 
     <div class="container-fluid centerp">
-          <h1>EMPRESA XXXXXXXXXXXXX</h1>
+          <h1 id="title">EMPRESA XXXXXXXXXXXXX</h1>
           <br>
          <div class="row">
             <div class="col-lg-2">
@@ -78,7 +78,7 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 
     </div>
             <div class="col-lg-2">
-              <select class="form-control" >
+              <select id="select2" class="form-control" >
           <option>Semanal</option>
           <option>Quincenal</option>
 
@@ -97,30 +97,29 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
           <label >Buscar por:</label>
       </div>
               <div class="col-lg-2">
-                <select class="form-control" >
+                <select id="select1"class="form-control" >
             <option>Razón Social</option>
             <option>RUC</option>
-
           </select>
-              </div>
-              <div class="col-lg-2">
-                 <input type="text" class="form-control" placeholder="Buscar deudor o acreedor"></input>
 
               </div>
               <div class="col-lg-2">
-                <div class="input-group">
-                <input type="hidden" name="d" value="2018-03">
-                <label class="radio-inline"> <input type="radio" name="t" value="C"> Por Cobrar </label>
+                 <input id="ingresar"type="text" class="form-control" placeholder="Buscar deudor o acreedor"></input>
 
-                <label class="radio-inline"> <input type="radio" name="t" value="P"> Por Pagar </label>
               </div>
+              <div class="col-lg-2">
+                <form name="formulario" id="formulario"  method="POST">
+	<input type="radio" name="edad" id="edad1" value="Pagar">Pagar<br>
+	<input type="radio" name="edad" id="edad2" value="Cobrar"> Cobrar<br>
+	<br><br>
+</form>
 
               </div>
 
               <div class="col-lg-2">
 
 
-              <button class="btn btn-primary">Buscar</button>
+              <button class="btn btn-primary" onclick="busqueda() "> Buscar </button>
 
 
               </div>
@@ -183,15 +182,6 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
                </div>
              </div>
              <BR>
-
-
-
-
-
-
-
-
-
                 </div>
 
                 <a href="/admuser" class="btn btn-primary"> ADMINISTRAR USUARIOS </a>
@@ -210,9 +200,41 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
     <!-- Optional JavaScript -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="calendar.js"></script>
-    <script>
-    var cal = CALENDAR();
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-    cal.init();
+      <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script type="text/javascript">
+
+
+    function busqueda(){
+
+
+          var t =   $('input:radio[name=edad]:checked').val()
+           console.log(t)
+
+           var ingresar = $('#ingresar').val()
+
+           var b = $('#select1').val()
+           console.log(b)
+
+
+           localStorage.setItem("b",b);
+           localStorage.setItem("t",t);
+           localStorage.setItem("ingresar",ingresar);
+           window.location.href='busqueda';
+    }
+
+    function reporte(){
+           var select2 = $('#select2').val()
+           localStorage.setItem("select2",select2);
+           window.location.href='flujos';
+
+    }
+
+
+    $(function empresa(){
+      var empresa = localStorage.getItem("empresa")
+      $("#title").text("EMPRESA "+empresa);
+    })
+
     </script>

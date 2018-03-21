@@ -1,3 +1,20 @@
+<style>
+
+table.blueTable {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+#mytable {
+  border: 1px solid #1C6EA4;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+</style>
+
 <div class="container">
       <h1>Administrador de Usuarios</h1>
       <br>
@@ -17,71 +34,28 @@
       <br>
       <br>
       <p>En caso el usuario no exista, deberá solicitar personalmente su registro.</p>
-      <div class="positiondiv">
-      <div class="row ">
-         <div class="col-lg-3">
-         <label>Nombre</label>
-         </div>
-         <div class="col-lg-3">
-            <label>Sin accesos</label>
-         </div>
-         <div class="col-lg-3">
-           <label>U.sin Facultades</label>
-         </div>
 
-         <div class="col-lg-3">
-           <label>U.con Facultades</label>
-         </div>
-       </div>
+      <table class="blueTable" >
 
-       <div class="row ">
-          <div class="col-lg-3">
-          <label>FULANO 3</label>
-          </div>
-          <div class="col-lg-3">
-             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1">
-          </div>
-          <div class="col-lg-3">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="2">
-          </div>
 
-          <div class="col-lg-3 text-align: center">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="3">
-          </div>
-        </div>
+        <thead>
+              <tr>
+                <th> Nombre </th>
+                <th> Sin accesos</th>
+                <th> U. sin Facultades </th>
+                <th> U. con Facultades </th>
 
-         <div class="row ">
-            <div class="col-lg-3">
-            <label>FULANO 3</label>
-            </div>
-            <div class="col-lg-3">
-               <input class="form-check-input" type="radio" name="exampleRadio" id="exampleRadios1" value="1">
-            </div>
-            <div class="col-lg-3">
-              <input class="form-check-input" type="radio" name="exampleRadio" id="exampleRadios2" value="2">
-            </div>
+              </tr>
+              </thead>
 
-            <div class="col-lg-3 text-align: center">
-              <input class="form-check-input" type="radio" name="exampleRadio" id="exampleRadios2" value="3">
-            </div>
-          </div>
+              <br>
 
-          <div class="row ">
-             <div class="col-lg-3">
-             <label>FULANO 3</label>
-             </div>
-             <div class="col-lg-3">
-                <input class="form-check-input" type="radio" name="exampleRad" id="exampleRadios1" value="1">
-             </div>
-             <div class="col-lg-3">
-               <input class="form-check-input" type="radio" name="exampleRad" id="exampleRadios1" value="2">
-             </div>
+              </table>
 
-             <div class="col-lg-3 text-align: center">
-               <input class="form-check-input" type="radio" name="exampleRad" id="exampleRadios1" value="3">
-             </div>
-           </div>
-         </div>
+              <div  class="positiondiv  " id="div1">
+
+              </div >
+
 
            <br>
            <br>
@@ -115,36 +89,7 @@
           <input class="btn btn-sm btn-default" type="submit" value="Agregar">
 
   </div>
-
-
-
-<script type="text/javascript">
-
-function enviar(){
-
-  var x = document.getElementById("obtenerdni").value
-  var z =  JSON.stringify({
-  empresa: x
-
-})
-
-
-  $.ajax({
-    url: '/api/getuser',
-    type: 'POST',
-    method: 'POST',
-    data: {dni: x},
-    success:function(data) {
-      if ( data == "Ok" ) { window.location.href = url; }
-      else { small.innerHTML = "Error al hacer el pedido. Int&#233;ntelo de nuevo o consulte con un administrador."; }
-    }
-  });
-
-}
-
-
-</script>
-
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
 <script type="text/javascript">
 function addUser( div ){
@@ -181,7 +126,7 @@ function addUser( div ){
 }
 </script>
 
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
 
   <script>
 
@@ -200,6 +145,35 @@ function cargarUsers(){
        });
 
   }
+
+
+$(  function admuser(){
+
+
+    $.ajax({
+         url: '/api/getuser',
+         type: 'POST',
+         method: 'POST',
+         data: {empresa:"EMPRESA 2"},
+         success: function(data){
+         console.log(data);
+         var tbl=$("<table/>").attr("id","mytable");
+    $("#div1").append(tbl);
+    for(var i=0;i<data.usuario.length;i++)
+    {
+        var tr="<tr>";
+        var td1="<td>"+data.usuario[i]["name"]+"</td>";
+        var td2="<td> <input type='radio' value='1' name='priv"+[i]+"'></td>";
+        var td3="<td> <input type='radio' value='2' name='priv"+[i]+"'></td>";
+        var td4="<td> <input type='radio' value='3' name='priv"+[i]+"'></td>";
+       $("#mytable").append(tr+td1+td2+td3+td4);
+
+    }}
+       });
+
+
+
+  })
 
 
 

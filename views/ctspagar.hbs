@@ -21,7 +21,7 @@ table.blueTable {
 
 
 <div class="container ">
-      <h1>Cuentas por pagar *******</h1>
+      <h1 id="title">Cuentas por pagar *******</h1>
 
 
       <br>
@@ -61,7 +61,7 @@ table.blueTable {
 
             </div>
             <div class="col-lg-3">
-             <button  class="btn btn-primary">Volver</button>
+               <a class="btn btn-primary" href="calendario" role="button">Volver</a>
             </div>
             <div class="col-lg-3">
 
@@ -81,13 +81,16 @@ table.blueTable {
 
   $(document).ready(function cargarFacturas(){
 
+    var empresa = localStorage.getItem("empresa")
+    $("#title").text("Cuentas por pagar "+empresa);
+
 
 
     $.ajax({
          url: '/api/cuentaDeuda',
          type: 'POST',
          method: 'POST',
-         data: {empresa:"EMPRESA 2" },
+         data: {empresa:empresa , tipo:"Pagar"},
          success: function(data){
          console.log(data);
          var tbl=$("<table/>").attr("id","mytable");
@@ -95,8 +98,8 @@ table.blueTable {
     for(var i=0;i<data.cuenta.length;i++)
     {
         var tr="<tr>";
-        var td1="<td>"+data.cuenta[i]["empresa"]+"</td>";
-        var td2="<td>"+data.cuenta[i]["factura"]+"</td>";
+        var td1="<td>"+data.cuenta[i]["proeevedor"]+"</td>";
+          var td2="<td> <a href='cpagar?id="+ data.cuenta[i]["factura"] +"'>" + data.cuenta[i]["factura"] +"</a> </td>";
         var td3="<td style='color:red'>"+data.cuenta[i]["monto"]+"</td>";
         var td4="<td>"+data.cuenta[i]["fechaemision"]+"</td>";
         var td5="<td>"+data.cuenta[i]["fechavencimiento"]+"</td>";
@@ -109,6 +112,8 @@ table.blueTable {
        });
 
   });
+
+
 
 
 

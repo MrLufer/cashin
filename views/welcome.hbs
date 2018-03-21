@@ -2,20 +2,7 @@
       <h1>Bienvenid@ Fulan@ </h1>
 
       <br>
-      <div class="row textcenter ">
-         <div class="col-lg-4">
 
-         </div>
-         <div class="col-lg-4">
-          <button type='button' class='btn btn-primary' onclick='calendario(this.id)' id='38'> BUSINESS TO BEYOND S.A. </button>
-
-         </div>
-
-         <div class="col-lg-4">
-
-         </div>
-
-       </div>
       <br>
 
 
@@ -27,7 +14,7 @@
            </div>
 
            <div class="col-lg-4">
-           <a href="/calendario" class="btn btn-primary ancho" role="button">EMPRESA 2 SAC</a>
+           <button class="btn btn-primary ancho" onclick="empresa()" id="empresa" >EMPRESA 2</button>
            </div>
            <div class="col-lg-4">
 
@@ -36,19 +23,7 @@
 
          <br>
 
-         <div class="row ">
 
-            <div class="col-lg-4">
-
-            </div>
-
-            <div class="col-lg-4">
-            <a href="/calendario" class="btn btn-primary ancho" role="button">EMPRESA 3 SAC</a>
-            </div>
-            <div class="col-lg-4">
-
-            </div>
-          </div>
 
           <br>
 
@@ -87,22 +62,20 @@
 
   </div>
 
-  <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+
 
   <script>
-function calendario(item){
 
-  alert('gg')
-  /*if (item){
-    $.ajax({
-    type: "POST",
-    url: "php_inc/setSes.php",
-    data: { ses:item },
-    success: function(data){
-      if ( data == "ok" ) { window.location.href = "calendario.php"; }
-    }
-    });
-  }*/
 
-  window.location.href='http://localhost:3000/registro'
-</script>
+  function empresa(){
+
+    var empresa = $("#empresa").text();
+    localStorage.setItem("empresa",empresa);
+     window.location.href='calendario';
+
+  }
+
+
+  </script>

@@ -128,7 +128,7 @@
                  <div class="col-lg-4">
 
                    <button type="button" class="btn btn-primary">Anterior</button>
-                     <button type="button" class="btn btn-primary">Volver</button>
+                     <a href="ctspagar" class="btn btn-primary">Volver</a>
                      <button type="button" id="siguiente" class="btn btn-primary">Siguiente</button>
 
          </div>
@@ -193,9 +193,9 @@
       <div class="modal-content">
         <div class="modal-body">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                  <img class="img-responsive" src="">
+
         </div>
-        <div class="modal-footer">
+        <div class="">
           <button type="button" class="btn btn-sm btn-success" onclick="valid(this.id,17113)" id="Valido"> V&#225;lida </button>
           <button type="button" class="btn btn-sm btn-danger" onclick="valid(this.id,17113)" id="NoValido"> NO V&#225;lida </button>
           <button type="button" class="btn btn-sm btn-default" data-dismiss="modal"> Salir </button>
@@ -213,11 +213,10 @@
         <div class="modal-header">
           <h4> Si desea adjuntar la foto de un voucher, cheque o alg&#250;n otro sustento para demostrar el pago de la factura. </h4>
         </div>
-        <div class="modal-footer s">
+        <div class="modal-body">
           <form class="textcenter" method="post" enctype="multipart/form-data">
-            <input type="file" class="btn btn-sm btn-default centered" name="fileToUpload" id="fileToUpload" value="Explorar">
-            <p> La imagen no debe pesar m&#225;s de 1MB </p> <br> <br>
-            <input type="hidden" name="fac_id" value="17113">
+            <input type="file" class="btn btn-sm btn-default centered" name="fichero" id="fichero" value="Explorar">
+            <p> La imagen no debe pesar m&#225;s de 1MB </p> <br>
             <input type="submit" class="btn btn-sm btn-success" name="submit" value="Subir">
             <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"> Salir </button>
           </form>
@@ -280,53 +279,51 @@
 
 
 
-<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCuLPnPyynte2JW8tj47F-Ccafsx4LwuTo",
-    authDomain: "cashin-7828e.firebaseapp.com",
-    databaseURL: "https://cashin-7828e.firebaseio.com",
-    projectId: "cashin-7828e",
-    storageBucket: "cashin-7828e.appspot.com",
-    messagingSenderId: "369488725890"
-  };
-  firebase.initializeApp(config);
-</script>
+
 
 
 
 <script type="text/javascript">
 
 $(document).ready(function cargarFac(){
+
+
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+ }
+
+ var id = getParameterByName('id');
+
   $.ajax({
        url: '/api/getfactura',
        type: 'POST',
        method: 'POST',
-       data: {empresa:"EMPRESA 2" , factura:"E110B"},
+       data: {empresa:"EMPRESA 2" , factura:id},
        success: function(data){
-       console.log(data.cuenta[0]);
-
-       var num = data.cuenta[0].monto;
-       var n = num.toString();
-       var newmonto = n.substr(1)
-       console.log(newmonto);
+       console.log(data);
 
 
        $("#ruc").text("RUC: "+data.cuenta[0].ruc);
        $("#pro").text(data.cuenta[0].proeevedor);
        $("#factura").text(data.cuenta[0].factura);
-       $("#monto").text(newmonto +" Soles");
+       $("#monto").text(data.cuenta[0].monto +" Soles");
        $("#estado").text(data.cuenta[0].estado);
        $("#telefono").text(data.cuenta[0].telefono);
        $("#emision").text(data.cuenta[0].fechaemision);
        $("#vencimiento").text(data.cuenta[0].fechavencimiento);
        $("#descripcion").text(data.cuenta[0].descripcion);
        $("#contacto").text(data.cuenta[0].personacontacto);
-  }
+
+     }
+
      });
 
 });
+
+
 
 
 

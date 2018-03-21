@@ -96,6 +96,13 @@ app.get('/ctscobrar',(req,res)=>{
 
 })
 
+app.get('/busqueda',(req,res)=>{
+  res.render('busqueda.hbs',{
+    css: 'ctscobrar'
+  })
+
+})
+
 app.get('/ctspagar',(req,res)=>{
   res.render('ctspagar',{
     css: 'ctspagar'

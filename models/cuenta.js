@@ -15,7 +15,8 @@ const CuentaSchema = Schema({
   descripcion: {type: String},
   personacontacto: {type: String},
   telefono: {type: Number},
-  estado: {type: String}
+  estado: {type: String},
+  tipo:{type: String}
 
 
 })
